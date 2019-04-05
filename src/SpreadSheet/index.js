@@ -22,6 +22,12 @@ class SpreadSheet {
     this.format = format
     this._validateFormat()
     this.wb = xlsx.utils.book_new()
+    this.wscols = [
+      { wch:6 },
+      { wch:7 },
+      { wch:10 },
+      { wch:20 }
+    ]
   }
 
   /**
@@ -45,6 +51,7 @@ class SpreadSheet {
    */
   addSheet (name, data) {
     const ws = xlsx.utils.aoa_to_sheet(data)
+    ws['!cols'] = this.wscols;
     xlsx.utils.book_append_sheet(this.wb, ws, name)
   }
 
